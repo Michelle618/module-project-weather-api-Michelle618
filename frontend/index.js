@@ -40,7 +40,7 @@ async function moduleProject4() {
       document.querySelector('#todayDescription')
       .textContent = descriptions.find(d => d[0] === data.current.weather_description)[1]
       document.querySelector('#todayStats div:nth-child(1)')
-      .textContent = `${data.current.temperature_min}° / ${data.current.temperature_max}°`
+      .textContent = `${data.current.temperature_min}°/${data.current.temperature_max}°`
       document.querySelector('#todayStats div:nth-child(2)')
       .textContent = `Precipitation: ${data.current.precipitation_probability * 100}%`
       document.querySelector('#todayStats div:nth-child(3)')
@@ -58,8 +58,8 @@ async function moduleProject4() {
 
         weekDay.textContent = getWeekDay(day.date)
         apparent.textContent = descriptions.find(d => d[0] === day.weather_description)[1]
-        minMax.textContent = `${data.current.temperature_min}°/ ${data.current.temperature_max}°`
-        precipit.textContent =  `Precipitation: ${data.current.precipitation_probability * 100}%`
+        minMax.textContent = `${day.temperature_min}°/${day.temperature_max}°`
+        precipit.textContent =  `Precipitation: ${day.precdipitation_probability * 100}%`
 
       })
       document.querySelector('#location').firstElementChild.textContent = data.location.city
@@ -69,11 +69,18 @@ async function moduleProject4() {
     }
   })
   function getWeekDay(date) {
-    return date
+    
+      const d = new Date(date)
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const dayOfWeek = d.getDay();
+      const dayName = daysOfWeek[dayOfWeek + 1];
+      return dayName;
+    }
+  
   }
   // 👆 WORK WORK ABOVE THIS LINE 👆
 
-}
+
 
 // ❗ DO NOT CHANGE THE CODE  BELOW
 // ❗ DO NOT CHANGE THE CODE  BELOW
